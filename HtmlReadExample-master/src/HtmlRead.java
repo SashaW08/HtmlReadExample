@@ -24,6 +24,7 @@ public class HtmlRead {
                     int end = newLine.indexOf("\"");
                     int oend = newLine.indexOf("'");
 
+
                     if(end>-1 && oend>-1 && end<oend){
                         System.out.println(newLine.substring(0, end));
                     }
