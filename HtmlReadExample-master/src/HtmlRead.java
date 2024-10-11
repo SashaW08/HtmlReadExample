@@ -18,22 +18,24 @@ public class HtmlRead {
             );
             String line;
             while ( (line = reader.readLine()) != null ) {
-                if((line.contains("http") && line.contains("//"))) {
-                    int indexHTTP = line.indexOf("http");
-                    String newLine = line.substring(indexHTTP);
+                if((line.contains("href"))) {
+                    int indexHREF = line.indexOf("href");
+                    String newLine = line.substring(indexHREF+6);
+                    int end = newLine.indexOf("\"");
+                    int oend = newLine.indexOf("'");
 
-                    System.out.println(newLine);
-
-//                    if(line.indexOf("http")==-1){
-//                        newLine = line.substring(indexWWW);
-//                    }
-
-                }
-                if(line.contains("www")) {
-                    int indexWWW = line.indexOf("www");
-                    String newnewLine = line.substring(indexWWW);
-
-                    System.out.println(newnewLine);
+                    if(end>-1 && oend>-1 && end<oend){
+                        System.out.println(newLine.substring(0, end));
+                    }
+                    if(end>-1 && oend>-1 && end>oend) {
+                        System.out.println(newLine.substring(0, oend));
+                    }
+                    if(end>-1){
+                        System.out.println(newLine.substring(0, end));
+                    }
+                    if(oend>-1){
+                        System.out.println(newLine.substring(0,oend));
+                    }
                 }
             }
             reader.close();
