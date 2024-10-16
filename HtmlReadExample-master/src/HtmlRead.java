@@ -19,11 +19,10 @@ public class HtmlRead {
             String line;
             while ( (line = reader.readLine()) != null ) {
                 if((line.contains("href"))) {
-                    int indexHREF = line.indexOf("href");
-                    String newLine = line.substring(indexHREF+6);
+                    int indexHREF = line.indexOf("href")+6;
+                    String newLine = line.substring(indexHREF);
                     int end = newLine.indexOf("\"");
                     int oend = newLine.indexOf("'");
-
 
                     if(end>-1 && oend>-1 && end<oend){
                         System.out.println(newLine.substring(0, end));
@@ -31,10 +30,10 @@ public class HtmlRead {
                     if(end>-1 && oend>-1 && end>oend) {
                         System.out.println(newLine.substring(0, oend));
                     }
-                    if(end>-1){
+                    if(end>-1 && oend==-1){
                         System.out.println(newLine.substring(0, end));
                     }
-                    if(oend>-1){
+                    if(oend>-1 && end==-1){
                         System.out.println(newLine.substring(0,oend));
                     }
                 }
